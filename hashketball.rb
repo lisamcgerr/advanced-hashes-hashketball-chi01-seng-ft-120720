@@ -241,7 +241,30 @@ def player_stats(name_of_player)
   end
 end
 
+
+def winning_team
+  home_total = 0 
+  counter = 0 
+  while counter < game_hash[:home][:players].length do
+    home_total = game_hash[:home][:players][counter][:points] + home_total
+    counter += 1 
+  end
   
+  away_total = 0
+  counter = 0 
+  while counter < game_hash[:away][:players].length do
+    away_total = game_hash[:away][:players][counter][:points] + away_total
+    counter += 1 
+  end
+  
+  if home_total > away_total
+    return game_hash[:home][:team_name]
+  elsif away_total > home_total
+  return game_hash[:away][:team_name]
+else home_total == away_total
+  puts "Both teams scored the same amount of points #{home_total}!"
+end
+end
   
   
   
